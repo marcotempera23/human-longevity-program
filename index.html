@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Human Longevity Program · IRCCS San Raffaele</title>
+  <meta name="description" content="Lo Human Longevity Program è un programma di ricerca multidisciplinare dell'IRCCS San Raffaele che studia le basi molecolari, cellulari e ambientali dell'invecchiamento, per vivere più a lungo e in salute." />
+  <meta name="theme-color" content="#04090c" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Human Longevity Program · IRCCS San Raffaele" />
+  <meta property="og:description" content="Biologia dell'invecchiamento e medicina traslazionale: predizione, prevenzione e riabilitazione." />
+  <meta property="og:locale" content="it_IT" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="hlp">
+  <a class="skip" href="#contenuto">Vai al contenuto</a>
+
+  <!-- Schermata d'ingresso -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-inner">
+      <svg class="hmark hmark-lg" viewBox="0 0 48 48" aria-hidden="true">
+        <circle class="hmark-ring" cx="24" cy="24" r="17" />
+        <circle class="hmark-node" cx="24" cy="7" r="3" />
+        <circle class="hmark-node" cx="41" cy="24" r="3" />
+        <circle class="hmark-node" cx="24" cy="41" r="3" />
+        <circle class="hmark-node" cx="7" cy="24" r="3" />
+        <circle class="hmark-core" cx="24" cy="24" r="5.5" />
+      </svg>
+      <p class="loader-text">Human Longevity Program</p>
+      <div class="loader-bar"><span id="loader-fill"></span></div>
+    </div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#top" aria-label="Human Longevity Program, inizio pagina">
+      <svg class="hmark" viewBox="0 0 48 48" aria-hidden="true">
+        <circle class="hmark-ring" cx="24" cy="24" r="17" />
+        <circle class="hmark-node" cx="24" cy="7" r="3" />
+        <circle class="hmark-node" cx="41" cy="24" r="3" />
+        <circle class="hmark-node" cx="24" cy="41" r="3" />
+        <circle class="hmark-node" cx="7" cy="24" r="3" />
+        <circle class="hmark-core" cx="24" cy="24" r="5.5" />
+      </svg>
+      <span>Human <em>Longevity</em> <b>Program</b></span>
+    </a>
+    <nav class="nav-links" id="nav-links" aria-label="Sezioni">
+      <a href="#programma">Il programma</a>
+      <a href="#metodo">Il metodo</a>
+      <a href="#ricerca">Ricerca</a>
+      <a href="#team">Team</a>
+      <a href="#pubblicazioni">Pubblicazioni</a>
+      <a href="#collaborazioni">Collaborazioni</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn btn-ghost btn-sm nav-sr" href="https://sanraffaele.it/strutture/irccs-san-raffaele/" target="_blank" rel="noopener">IRCCS San Raffaele <span class="arrow" aria-hidden="true">↗</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Apri il menu" aria-expanded="false" aria-controls="mmenu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <!-- Menu per telefono: sta fuori dalla barra perché la barra, con backdrop-filter,
+       diventerebbe il contenitore degli elementi fissi e il menu resterebbe schiacciato -->
+  <div class="mmenu" id="mmenu" aria-hidden="true">
+    <nav class="mmenu-links" aria-label="Sezioni">
+      <a href="#programma"><span>01</span>Il programma</a>
+      <a href="#metodo"><span>02</span>Il metodo</a>
+      <a href="#ricerca"><span>03</span>Ricerca</a>
+      <a href="#team"><span>04</span>Team</a>
+      <a href="#pubblicazioni"><span>05</span>Pubblicazioni</a>
+      <a href="#collaborazioni"><span>06</span>Collaborazioni</a>
+    </nav>
+    <div class="mmenu-foot">
+      <a class="btn btn-primary btn-lg" href="https://sanraffaele.it/strutture/irccs-san-raffaele/" target="_blank" rel="noopener">IRCCS San Raffaele <span class="arrow" aria-hidden="true">↗</span></a>
+      <p>Human Longevity Program · Responsabile Prof. Ennio Tasciotti</p>
+    </div>
+  </div>
+
+  <!-- Scena 3D: la materia del programma, che cambia forma durante la lettura -->
+  <div class="stage" id="stage" aria-hidden="true">
+    <canvas id="scene-canvas"></canvas>
+    <div class="stage-vignette"></div>
+  </div>
+
+  <!-- Il ciclo del poster: resta visibile mentre si attraversano i quattro passi -->
+  <div class="cycle-hud" id="cycle-hud" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <circle class="cy-track" cx="100" cy="100" r="78" />
+      <circle class="cy-arc" id="cy-arc" cx="100" cy="100" r="78" pathLength="1" />
+      <g class="cy-node" data-i="0"><circle cx="100" cy="22" r="7" /><text x="100" y="8" text-anchor="middle">Misurare</text></g>
+      <g class="cy-node" data-i="1"><circle cx="178" cy="100" r="7" /><text x="186" y="104" text-anchor="start">Capire</text></g>
+      <g class="cy-node" data-i="2"><circle cx="100" cy="178" r="7" /><text x="100" y="198" text-anchor="middle">Integrare</text></g>
+      <g class="cy-node" data-i="3"><circle cx="22" cy="100" r="7" /><text x="14" y="104" text-anchor="end">Intervenire</text></g>
+      <text class="cy-center" x="100" y="96">Prevenzione</text>
+      <text class="cy-center" x="100" y="114">e riabilitazione</text>
+    </svg>
+  </div>
+
+  <main id="contenuto">
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow hero-in"><span><a class="eyebrow-link" href="https://sanraffaele.it/strutture/irccs-san-raffaele/" target="_blank" rel="noopener">IRCCS San Raffaele ↗</a><span class="eb-rest"> · Programma di ricerca</span></span></p>
+        <h1 class="hero-title">
+          <span class="line"><span class="split">Human Longevity</span></span>
+          <span class="line accent"><span class="split">Program</span></span>
+        </h1>
+        <p class="lead hero-in">Studiamo le basi molecolari, cellulari e ambientali dell’invecchiamento per sviluppare nuovi approcci preventivi, terapeutici e riabilitativi: per vivere più a lungo e in salute.</p>
+        <div class="hero-cta hero-in">
+          <a class="btn btn-primary btn-lg" href="#metodo">Scopri il metodo <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost btn-lg" href="#pubblicazioni">Pubblicazioni</a>
+        </div>
+        <ul class="hero-meta hero-in" aria-label="In numeri">
+          <li><b data-count="8">8</b><span>interessi di ricerca</span></li>
+          <li><b data-count="19">19</b><span>pubblicazioni scientifiche</span></li>
+          <li><b data-count="15">15</b><span>collaborazioni in Italia e all’estero</span></li>
+        </ul>
+      </div>
+      <div class="hud" aria-hidden="true">
+        <div class="hud-chip hud-a"><span class="hud-pulse"></span>Infiammazione</div>
+        <div class="hud-chip hud-b"><span class="st st-ice"></span>Stress ossidativo</div>
+        <div class="hud-chip hud-c"><span class="st st-ok"></span>Funzione mitocondriale</div>
+        <div class="hud-chip hud-d"><span class="st st-sand"></span>Gemelli digitali</div>
+      </div>
+      <a class="scroll-cue" href="#programma" aria-label="Scorri al programma">
+        <span class="scroll-mouse"><span></span></span>
+        Scorri
+      </a>
+    </section>
+
+    <!-- ═══ MANIFESTO ═══ -->
+    <section class="manifesto" id="programma" aria-labelledby="manifesto-title">
+      <div class="wrap narrow">
+        <p class="eyebrow">Il programma</p>
+        <h2 id="manifesto-title" class="manifesto-text" data-scrub>Il programma si fonda sui principi della medicina rigenerativa e sulla straordinaria capacità del corpo umano di riparare organi e tessuti.</h2>
+        <p class="manifesto-sub" data-reveal>Un programma di ricerca multidisciplinare: dalla biologia della cellula alla sensoristica digitale, dall’intelligenza artificiale alle nanotecnologie, fino ai percorsi riabilitativi personalizzati.</p>
+      </div>
+    </section>
+
+    <!-- ═══ METODO: il ciclo in quattro passi ═══ -->
+    <section class="story" id="metodo" aria-label="Il metodo">
+      <div class="story-intro">
+        <p class="eyebrow">Il metodo</p>
+        <h2>Biologia dell’invecchiamento e medicina traslazionale.</h2>
+        <p class="lead">Predizione, prevenzione e riabilitazione. Integrando misure digitali, biologia cellulare e modelli predittivi identifichiamo i parametri che modulano le traiettorie di invecchiamento, per ottimizzare benessere e prevenzione lungo tutto l’arco della vita.</p>
+      </div>
+      <div id="steps"></div>
+    </section>
+
+    <!-- ═══ SUPERCALCOLO ═══ -->
+    <section class="section compute" id="supercalcolo" aria-labelledby="compute-title">
+      <div class="wrap split-2">
+        <div data-reveal>
+          <p class="eyebrow">Centro di Supercalcolo</p>
+          <h2 id="compute-title">Supercalcolo per la medicina predittiva.</h2>
+          <p class="lead">Sensori, dispositivi indossabili e analisi multi-omica monitorano in continuo lo stato di salute e riconoscono precocemente i segnali di declino funzionale, anche in relazione agli stili di vita.</p>
+          <p class="muted">Grazie al Centro di Supercalcolo questi dati confluiscono in una piattaforma predittiva basata sull’intelligenza artificiale e in gemelli digitali che simulano l’evoluzione di ogni paziente. Su queste basi nascono nanoparticelle biomimetiche, nanoformulazioni nutraceutiche e farmaceutiche capaci di regolare l’infiammazione anche a livello dell’unità neurovascolare, e percorsi riabilitativi personalizzati.</p>
+        </div>
+        <div class="pipeline" data-reveal aria-label="Dal dato alla terapia">
+          <div class="pipe-node"><span class="pipe-k">1</span><div><b>Sensori e wearable</b><small>parametri fisiologici in continuo</small></div></div>
+          <div class="pipe-link"><i></i></div>
+          <div class="pipe-node"><span class="pipe-k">2</span><div><b>Analisi multi-omica</b><small>esosomi e biomarcatori circolanti</small></div></div>
+          <div class="pipe-link"><i></i></div>
+          <div class="pipe-node"><span class="pipe-k">3</span><div><b>Centro di Supercalcolo</b><small>integrazione dei dati e modelli AI</small></div></div>
+          <div class="pipe-link"><i></i></div>
+          <div class="pipe-node"><span class="pipe-k">4</span><div><b>Gemelli digitali</b><small>traiettorie e risposta agli interventi</small></div></div>
+          <div class="pipe-link"><i></i></div>
+          <div class="pipe-node pipe-out"><span class="pipe-k">5</span><div><b>Terapie e riabilitazione personalizzate</b><small>nanoformulazioni e percorsi adattivi</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ INTERESSI DI RICERCA ═══ -->
+    <section class="section research" id="ricerca" aria-labelledby="research-title">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Interessi di ricerca</p>
+          <h2 id="research-title">Otto direzioni, un solo obiettivo: più anni in salute.</h2>
+        </div>
+        <ol class="interest-grid" id="interests"></ol>
+      </div>
+    </section>
+
+    <!-- ═══ MISSIONE ═══ -->
+    <section class="section mission" aria-labelledby="mission-title">
+      <div class="mission-glow" aria-hidden="true"></div>
+      <div class="wrap narrow center">
+        <p class="eyebrow">La missione</p>
+        <h2 id="mission-title" class="mission-text" data-scrub>Coordinare scoperte scientifiche e innovazione tecnologica per sviluppare terapie di nuova generazione e definire stili di vita e pratiche comportamentali che allunghino la vita in salute.</h2>
+      </div>
+    </section>
+
+    <!-- ═══ TEAM ═══ -->
+    <section class="section team" id="team" aria-labelledby="team-title">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Il team</p>
+          <h2 id="team-title">Le persone del programma.</h2>
+          <p class="lead">Competenze di biologia, farmacologia, nanotecnologie, bioingegneria e intelligenza artificiale, nello stesso gruppo di ricerca.</p>
+        </div>
+        <div class="team-grid" id="team-grid"></div>
+      </div>
+    </section>
+
+    <!-- ═══ PUBBLICAZIONI ═══ -->
+    <section class="section pubs" id="pubblicazioni" aria-labelledby="pubs-title">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Pubblicazioni</p>
+          <h2 id="pubs-title">La ricerca, nero su bianco.</h2>
+          <p class="lead">Articoli, review e meta-analisi firmati dai membri del programma. Filtra per autore o apri l’articolo sulla rivista.</p>
+        </div>
+        <div class="chips" id="pub-filters" role="group" aria-label="Filtra per autore"></div>
+        <ol class="pub-list" id="pub-list" aria-live="polite"></ol>
+        <div class="pub-more"><button class="btn btn-ghost" id="pub-more" type="button"></button></div>
+      </div>
+    </section>
+
+    <!-- ═══ COLLABORAZIONI ═══ -->
+    <section class="section partners" id="collaborazioni" aria-labelledby="partners-title">
+      <div class="wrap">
+        <div class="section-head center" data-reveal>
+          <p class="eyebrow">Collaborazioni nazionali e internazionali</p>
+          <h2 id="partners-title">Una rete che va oltre il laboratorio.</h2>
+          <p class="lead">Università, istituti di ricovero e cura, fondazioni e imprese, in Italia e all’estero.</p>
+        </div>
+      </div>
+      <div class="logo-rows" id="logo-rows"></div>
+      <ul class="sr-only" id="partner-names"></ul>
+    </section>
+
+    <!-- ═══ CHIUSURA ═══ -->
+    <section class="section final" id="contatti" aria-labelledby="final-title">
+      <div class="final-glow" aria-hidden="true"></div>
+      <div class="wrap center" data-reveal>
+        <svg class="hmark hmark-xl" viewBox="0 0 48 48" aria-hidden="true">
+          <circle class="hmark-ring" cx="24" cy="24" r="17" />
+          <circle class="hmark-node" cx="24" cy="7" r="3" />
+          <circle class="hmark-node" cx="41" cy="24" r="3" />
+          <circle class="hmark-node" cx="24" cy="41" r="3" />
+          <circle class="hmark-node" cx="7" cy="24" r="3" />
+          <circle class="hmark-core" cx="24" cy="24" r="5.5" />
+        </svg>
+        <h2 id="final-title">Vivere più a lungo.<br /><em>E in salute.</em></h2>
+        <p class="lead">Lo Human Longevity Program è un programma di ricerca dell’IRCCS San Raffaele.</p>
+        <div class="hero-cta center">
+          <a class="btn btn-primary btn-lg" href="https://sanraffaele.it/strutture/irccs-san-raffaele/" target="_blank" rel="noopener">Scopri l’IRCCS San Raffaele <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost btn-lg" href="#top">Torna all’inizio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img class="footer-logo" src="/irccs-san-raffaele.png" alt="IRCCS San Raffaele" width="1640" height="200" />
+        <p class="muted">Human Longevity Program. Biologia dell’invecchiamento e medicina traslazionale: predizione, prevenzione e riabilitazione.</p>
+      </div>
+      <nav aria-label="Programma">
+        <p class="footer-h">Programma</p>
+        <a href="#programma">Il programma</a>
+        <a href="#metodo">Il metodo</a>
+        <a href="#supercalcolo">Supercalcolo</a>
+        <a href="#ricerca">Interessi di ricerca</a>
+      </nav>
+      <nav aria-label="Persone e risultati">
+        <p class="footer-h">Ricerca</p>
+        <a href="#team">Team</a>
+        <a href="#pubblicazioni">Pubblicazioni</a>
+        <a href="#collaborazioni">Collaborazioni</a>
+      </nav>
+      <nav aria-label="Istituto">
+        <p class="footer-h">Istituto</p>
+        <a href="https://sanraffaele.it/strutture/irccs-san-raffaele/" target="_blank" rel="noopener">IRCCS San Raffaele ↗</a>
+      </nav>
+    </div>
+    <div class="wrap footer-note">
+      <p>Responsabile del programma: Prof. Ennio Tasciotti.</p>
+      <p>© <span id="year"></span> Human Longevity Program · IRCCS San Raffaele</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
