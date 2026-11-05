@@ -1,6 +1,9 @@
 // Contenuti dello Human Longevity Program, presi da
 // "Human Longevity Program sito.docx" e dal poster "Postre HLP.pptx".
 
+// sito personale del responsabile del programma (progetto separato)
+export const TASCIOTTI_URL = "https://sito-ennio.vercel.app";
+
 export const TEAM = {
   lead: { name: "Ennio Tasciotti", title: "Prof.", role: "Responsabile del programma", short: "E. Tasciotti" },
   staff: [

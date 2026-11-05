@@ -114,6 +114,11 @@ button.person:hover { border-color: var(--line-strong); transform: translateY(-4
 .person-lead .avatar { width: 96px; height: 96px; font-size: 34px; }
 .person-lead b { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3vw, 42px); letter-spacing: -0.02em; line-height: 1.05; }
 .person-lead small { font-size: 15px; color: var(--ice-2); }
+.person-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.pc-btn { padding: 9px 15px; border-radius: 999px; border: 1px solid var(--line-strong); background: transparent; font: 500 13.5px var(--sans); cursor: pointer; transition: border-color 0.3s, color 0.3s; }
+.pc-btn:hover { border-color: var(--ice); color: var(--text); }
+.person-site { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border-radius: 999px; background: var(--ice); color: #03121a; font-size: 13.5px; font-weight: 500; text-decoration: none; transition: transform 0.3s var(--ease), box-shadow 0.3s; }
+.person-site:hover { transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(143, 216, 255, 0.7); }
 
 /* ── Pubblicazioni ──────────────────────────────────────────────────────── */
 .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
@@ -231,3 +236,5 @@ body.menu-open .nav { background: transparent; border-color: transparent; backdr
   .manifesto { padding: 14vh 0 10vh; }
   .hlp .final .hero-cta .btn { flex: 1 1 100%; }
 }
+.footer-note a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line-strong); }
+.footer-note a:hover { color: var(--text); }

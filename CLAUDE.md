@@ -6,6 +6,7 @@ Sito di presentazione dello Human Longevity Program dell'IRCCS San Raffaele (res
 - Contenuti presi da "Human Longevity Program sito.docx" e dal poster "Postre HLP.pptx" (stanno in ~/Desktop/HORIZON HEALTH/).
 - Nato il 5 nov 2026 come pagina /hlp/ della landing HorAIzon, poi separato in questo progetto autonomo: dal sito HLP non si deve poter arrivare a HorAIzon. Non reintrodurre riferimenti a HorAIzon.
 - Link al San Raffaele, ovunque: https://sanraffaele.it/strutture/irccs-san-raffaele/
+- Sito gemello del Prof. Tasciotti: https://sito-ennio.vercel.app (progetto separato in ~/Desktop/sito-tasciotti, repo GitHub marcotempera23/SITO-ENNIO, Next.js). Unico legame tra i due siti: i link (qui `TASCIOTTI_URL` in `src/data.js`, scheda del responsabile nel team, menu mobile, footer). Il sito di Tasciotti riprende stile, scena 3D e animazioni di questo.
 
 ## Struttura
 - `index.html`: sezioni (hero, manifesto, ciclo, supercalcolo, ricerca, missione, team, pubblicazioni, collaborazioni, contatti, footer) e menu mobile `#mmenu`.

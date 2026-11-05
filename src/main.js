@@ -5,7 +5,7 @@ import "./base.css";
 import "./hlp.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CYCLE, INTERESTS, PARTNERS, TEAM } from "./data.js";
+import { CYCLE, INTERESTS, PARTNERS, TASCIOTTI_URL, TEAM } from "./data.js";
 import { PUBLICATIONS } from "./publications.js";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -38,12 +38,24 @@ const initials = (name) => name.split(" ").map((w) => w[0]).join("");
 const pubCount = (short) => PUBLICATIONS.filter((p) => p.authors.includes(short)).length;
 const personCard = (p, lead = false) => {
   const n = pubCount(p.short);
+  const pubs = n ? `${n} ${n === 1 ? "pubblicazione" : "pubblicazioni"} →` : "";
+  if (lead) {
+    // il responsabile: pubblicazioni e collegamento al suo sito personale
+    return `<div class="person person-lead" data-reveal>
+      <span class="avatar" aria-hidden="true">${initials(p.name)}</span>
+      <span><b>${p.title} ${esc(p.name)}</b><small>${esc(p.role)}</small></span>
+      <span class="person-actions">
+        ${n ? `<button class="pc pc-btn" type="button" data-author="${esc(p.short)}" aria-label="Mostra le pubblicazioni di ${esc(p.name)}">${pubs}</button>` : ""}
+        <a class="person-site" href="${TASCIOTTI_URL}" target="_blank" rel="noopener">Il sito del Prof. Tasciotti <span aria-hidden="true">↗</span></a>
+      </span>
+    </div>`;
+  }
   const tag = n ? "button" : "div";
   const attrs = n ? `type="button" data-author="${esc(p.short)}" aria-label="Mostra le pubblicazioni di ${esc(p.name)}"` : "";
-  return `<${tag} class="person${lead ? " person-lead" : ""}" ${attrs} data-reveal>
+  return `<${tag} class="person" ${attrs} data-reveal>
     <span class="avatar" aria-hidden="true">${initials(p.name)}</span>
-    <span><b>${lead ? `${p.title} ` : ""}${esc(p.name)}</b>${lead ? `<small>${esc(p.role)}</small>` : ""}</span>
-    ${n ? `<span class="pc">${n} ${n === 1 ? "pubblicazione" : "pubblicazioni"} →</span>` : ""}
+    <span><b>${esc(p.name)}</b></span>
+    ${n ? `<span class="pc">${pubs}</span>` : ""}
   </${tag}>`;
 };
 $("#team-grid").innerHTML = personCard(TEAM.lead, true) + TEAM.staff.map((p) => personCard(p)).join("");
@@ -79,7 +91,7 @@ function renderPubs(animate = true) {
   more.parentElement.hidden = !!author || list.length <= 8;
   more.textContent = expanded ? "Mostra meno" : `Mostra tutte (${list.length})`;
   for (const c of $$(".chip", filters)) c.setAttribute("aria-pressed", String((c.dataset.a || null) === author));
-  for (const c of $$(".person[data-author]")) c.classList.toggle("active", c.dataset.author === author);
+  for (const c of $$("#team-grid [data-author]")) c.closest(".person").classList.toggle("active", c.dataset.author === author);
   if (animate && !reduced) gsap.from($$(".pub", $("#pub-list")), { y: 18, opacity: 0, duration: 0.6, stagger: 0.04, ease: "power3.out" });
   ScrollTrigger.refresh();
 }
@@ -95,7 +107,7 @@ $("#pub-more").addEventListener("click", () => {
   if (!expanded) $("#pubblicazioni").scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
 });
 $("#team-grid").addEventListener("click", (e) => {
-  const b = e.target.closest(".person[data-author]");
+  const b = e.target.closest("[data-author]");
   if (!b) return;
   author = b.dataset.author;
   renderPubs();
