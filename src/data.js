@@ -4,13 +4,14 @@
 // sito personale del responsabile del programma (progetto separato)
 export const TASCIOTTI_URL = "https://sito-ennio.vercel.app";
 
+// pubs: totale delle pubblicazioni della persona (non solo quelle del programma elencate sotto)
 export const TEAM = {
-  lead: { name: "Ennio Tasciotti", title: "Prof.", role: "Responsabile del programma", short: "E. Tasciotti" },
+  lead: { name: "Ennio Tasciotti", title: "Prof.", role: "Responsabile del programma", short: "E. Tasciotti", pubs: "200+" },
   staff: [
-    { name: "Sabina Pulone", short: "S. Pulone" },
-    { name: "Anna Baroni", short: "A. Baroni" },
-    { name: "Chantalle Moulton", short: "C. Moulton" },
-    { name: "Eugenia Romano", short: "E. Romano" },
+    { name: "Sabina Pulone", short: "S. Pulone", pubs: "6" },
+    { name: "Anna Baroni", short: "A. Baroni", pubs: "6" },
+    { name: "Chantalle Moulton", short: "C. Moulton", pubs: "21" },
+    { name: "Eugenia Romano", short: "E. Romano", pubs: "21" },
     { name: "Marco Tempera", short: "M. Tempera" },
     { name: "Alessandro Nawaz", short: "A. Nawaz" },
   ],

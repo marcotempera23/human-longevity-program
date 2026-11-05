@@ -38,24 +38,26 @@ const initials = (name) => name.split(" ").map((w) => w[0]).join("");
 const pubCount = (short) => PUBLICATIONS.filter((p) => p.authors.includes(short)).length;
 const personCard = (p, lead = false) => {
   const n = pubCount(p.short);
-  const pubs = n ? `${n} ${n === 1 ? "pubblicazione" : "pubblicazioni"} →` : "";
+  // sulla scheda il totale della persona; il filtro mostra quelle del programma elencate sotto
+  const total = p.pubs ?? (n ? String(n) : "");
+  const pubs = total ? `${total} ${total === "1" ? "pubblicazione" : "pubblicazioni"}${n ? " →" : ""}` : "";
   if (lead) {
     // il responsabile: pubblicazioni e collegamento al suo sito personale
     return `<div class="person person-lead" data-reveal>
       <span class="avatar" aria-hidden="true">${initials(p.name)}</span>
       <span><b>${p.title} ${esc(p.name)}</b><small>${esc(p.role)}</small></span>
       <span class="person-actions">
-        ${n ? `<button class="pc pc-btn" type="button" data-author="${esc(p.short)}" aria-label="Mostra le pubblicazioni di ${esc(p.name)}">${pubs}</button>` : ""}
+        ${n ? `<button class="pc pc-btn" type="button" data-author="${esc(p.short)}" aria-label="${esc(pubs.replace(" →", ""))}: mostra quelle del programma di ${esc(p.name)}">${pubs}</button>` : ""}
         <a class="person-site" href="${TASCIOTTI_URL}" target="_blank" rel="noopener">Il sito del Prof. Tasciotti <span aria-hidden="true">↗</span></a>
       </span>
     </div>`;
   }
   const tag = n ? "button" : "div";
-  const attrs = n ? `type="button" data-author="${esc(p.short)}" aria-label="Mostra le pubblicazioni di ${esc(p.name)}"` : "";
+  const attrs = n ? `type="button" data-author="${esc(p.short)}" aria-label="${esc(pubs.replace(" →", ""))}: mostra quelle del programma di ${esc(p.name)}"` : "";
   return `<${tag} class="person" ${attrs} data-reveal>
     <span class="avatar" aria-hidden="true">${initials(p.name)}</span>
     <span><b>${esc(p.name)}</b></span>
-    ${n ? `<span class="pc">${pubs}</span>` : ""}
+    ${pubs ? `<span class="pc">${pubs}</span>` : ""}
   </${tag}>`;
 };
 $("#team-grid").innerHTML = personCard(TEAM.lead, true) + TEAM.staff.map((p) => personCard(p)).join("");
@@ -167,10 +169,10 @@ const ONE = (i) => ({ w1: +(i === 1), w2: +(i === 2), w3: +(i === 3), w4: +(i ==
 const SCENES = {
   hero:        () => ({ shape: 0, colors: ["#8fd8ff", "#e9dfc9"], dist: isNarrow() ? 1.0 : 1.02, ty: isNarrow() ? -0.42 : 0, sx: isNarrow() ? 0 : 0.18, halo: 1, spin: 1 }),
   manifesto:   () => ({ shape: 0, colors: ["#8fd8ff", "#7ce0bf"], dist: isNarrow() ? 0.62 : 0.55, ty: 0, sx: 0, halo: 0, spin: 0.6 }),
-  misurare:    () => ({ shape: 1, colors: ["#7ce0bf", "#8fd8ff"], dist: isNarrow() ? 1.0 : 1.04, ty: isNarrow() ? -0.38 : 0, sx: isNarrow() ? 0 : 0.17, halo: 0, spin: 1 }),
+  misurare:    () => ({ shape: 4, colors: ["#7ce0bf", "#8fd8ff"], dist: isNarrow() ? 1.0 : 1.04, ty: isNarrow() ? -0.38 : 0, sx: isNarrow() ? 0 : 0.17, halo: 0, spin: 1 }),
   capire:      () => ({ shape: 2, colors: ["#e9dfc9", "#7ce0bf"], dist: isNarrow() ? 1.05 : 0.95, ty: isNarrow() ? -0.38 : 0, sx: isNarrow() ? 0 : 0.17, halo: 0, spin: 1.6 }),
   integrare:   () => ({ shape: 3, colors: ["#5aa7c9", "#c4ecff"], dist: isNarrow() ? 1.05 : 1.0, ty: isNarrow() ? -0.38 : 0, sx: isNarrow() ? 0 : 0.17, halo: 0, spin: 0.8 }),
-  intervenire: () => ({ shape: 4, colors: ["#f2a28f", "#8fd8ff"], dist: isNarrow() ? 1.05 : 0.98, ty: isNarrow() ? -0.38 : 0, sx: isNarrow() ? 0 : 0.17, halo: 0, spin: 0.9 }),
+  intervenire: () => ({ shape: 1, colors: ["#f2a28f", "#8fd8ff"], dist: isNarrow() ? 1.05 : 0.98, ty: isNarrow() ? -0.38 : 0, sx: isNarrow() ? 0 : 0.17, halo: 0, spin: 0.9 }),
 };
 const STEP_SCENES = ["misurare", "capire", "integrare", "intervenire"];
 

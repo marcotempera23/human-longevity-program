@@ -11,7 +11,8 @@ Sito di presentazione dello Human Longevity Program dell'IRCCS San Raffaele (res
 ## Struttura
 - `index.html`: sezioni (hero, manifesto, ciclo, supercalcolo, ricerca, missione, team, pubblicazioni, collaborazioni, contatti, footer) e menu mobile `#mmenu`.
 - `src/main.js`: costruisce team, interessi, pubblicazioni, loghi; animazioni GSAP + ScrollTrigger; `SCENES`/`go()` cambiano la forma della scena per sezione; con `?test` nell'URL GSAP non rallenta (utile per screenshot headless).
-- `src/scene.js`: Three.js r160, un'unica nuvola di particelle che si trasforma: nanoparticella → corpo (`public/avatar.glb`) → doppia elica → reticolo di calcolo → vasi.
+- `src/scene.js`: Three.js r160, un'unica nuvola di particelle che si trasforma: nanoparticella, corpo/gemello digitale (`public/avatar.glb`), doppia elica, reticolo di calcolo, vasi. In `SCENES` (main.js): Misurare = vasi, Capire = elica, Integrare = reticolo, Intervenire = gemello digitale.
+- Team: `pubs` in data.js è il totale delle pubblicazioni della persona mostrato sulla scheda; filtri ed elenco usano solo le 19 pubblicazioni del programma.
 - `src/data.js`: TEAM, INTERESTS, CYCLE, PARTNERS (`zoom` e `dark` per i loghi). `src/publications.js`: 19 pubblicazioni con DOI.
 - Il logo "101100" del poster non è identificato: mostrato come "Partner del programma".
 
